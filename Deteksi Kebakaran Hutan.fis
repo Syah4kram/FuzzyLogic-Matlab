@@ -1,0 +1,48 @@
+[System]
+Name='Deteksi Kebakaran Hutan'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=3
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='suhu'
+Range=[0 100]
+NumMFs=3
+MF1='aman':'gaussmf',[12.7134890409791 -0.551]
+MF2='waspada':'gaussmf',[20.4 53.6835978835979]
+MF3='kebakaran':'gaussmf',[9.99862965947537 100]
+
+[Input2]
+Name='kelembapan'
+Range=[0 100]
+NumMFs=3
+MF1='kering':'gaussmf',[25.052746225427 6.94e-16]
+MF2='sedang':'gaussmf',[6.6485270027837 59.5]
+MF3='basah':'gaussmf',[15.1664607194289 100]
+
+[Input3]
+Name='co'
+Range=[0 5000]
+NumMFs=2
+MF1='tiada':'gaussmf',[13.8340114252676 -0.0846]
+MF2='ada':'sigmf',[0.022 435.677248677249]
+
+[Output1]
+Name='tingkat'
+Range=[0 1]
+NumMFs=3
+MF1='aman':'gaussmf',[0.1699 6.939e-18]
+MF2='waspada':'gaussmf',[0.0932 0.415343915343915]
+MF3='kebakaran':'gaussmf',[0.25052746225427 1]
+
+[Rules]
+2 -3 1, 2 (1) : 2
+3 1 2, 3 (1) : 1
+1 3 1, 1 (1) : 1

@@ -1,0 +1,53 @@
+[System]
+Name='Analisis Kebakaran Hutan'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=6
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='suhu'
+Range=[0 100]
+NumMFs=3
+MF1='aman':'gaussmf',[12.71 -0.286449735449741]
+MF2='waspada':'gaussmf',[13.2 58.6619047619048]
+MF3='kebakaran':'gaussmf',[16.7392788681105 100]
+
+[Input2]
+Name='kelembapan'
+Range=[0 100]
+NumMFs=3
+MF1='kering':'gaussmf',[25.052746225427 6.94e-16]
+MF2='sedang':'gaussmf',[6.6485270027837 59.5]
+MF3='basah':'gaussmf',[15.1664607194289 100]
+
+[Input3]
+Name='hth'
+Range=[0 360]
+NumMFs=4
+MF1='tiada-pendek':'gaussmf',[7.95 0.079809523809522]
+MF2='menengah-panjang':'gaussmf',[7.97 19.1126984126984]
+MF3='sangat_panjang':'gaussmf',[12.6 44.6587301587302]
+MF4='ekstrim':'gaussmf',[114.456223562624 360]
+
+[Output1]
+Name='tingkat'
+Range=[0 1]
+NumMFs=3
+MF1='aman':'gaussmf',[0.149236400661032 0.00815]
+MF2='waspada':'gaussmf',[0.123 0.444063492063492]
+MF3='kebakaran':'gaussmf',[0.253 1]
+
+[Rules]
+1 3 1, 1 (1) : 2
+2 2 2, 2 (1) : 1
+2 2 3, 2 (1) : 1
+2 1 2, 2 (1) : 1
+2 1 3, 2 (1) : 1
+3 1 -1, 3 (1) : 1
