@@ -15,9 +15,9 @@ DefuzzMethod='centroid'
 Name='suhu'
 Range=[0 100]
 NumMFs=3
-MF1='aman':'gaussmf',[12.7134890409791 -0.551]
-MF2='waspada':'gaussmf',[20.4 53.6835978835979]
-MF3='kebakaran':'gaussmf',[9.99862965947537 100]
+MF1='rendah':'gaussmf',[12.7134890409791 -0.551]
+MF2='normal':'gaussmf',[20.4 53.6835978835979]
+MF3='tinggi':'gaussmf',[9.99862965947537 100]
 
 [Input2]
 Name='kelembapan'
